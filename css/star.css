@@ -1,105 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-
-body {
-  background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
-  overflow: hidden;
-  background-repeat: no-repeat;
-  background-attachment: center;
-  background-size: cover;
-  height: 100vh;
-  font-family: "Roboto", sans-serif;
-  
-}
-
-.choices {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-
-
-}
-
-body footer {
-  color: white;
-  letter-spacing: 0.5px;
-}
-
-body footer a {
-  font-weight: 700;
-  font-family: "Roboto", sans-serif;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-}
-
-body footer a:hover {
-  color: #f39c12;
-}
-
-#title {
-  position: relative;
-  bottom: 5vh;
-  font-size: 10vh;
-  font-weight: 700;
-  letter-spacing: 2px;
-  background: linear-gradient(45deg, #1e90ff, #00ced1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
-  text-align: center;
-}
-#title:hover {
-  transform: scale(1.1);
-}
-
-/* For small devices (phones, less than 700px) */
-@media screen and (max-width: 700px) {
-  #title {
-    font-size: 7vh;
-  }
-  .choices {
-    top: 5vh;
-  }
-  body footer {
-    font-size: 12px;
-  }
-}
-
-/* For tablets and medium devices (between 600px and 1024px) */
-@media (max-width: 1024px) and (min-width: 600px) {
-  #title {
-    font-size: 10vh;
-  }
-  .choices {
-    top: 8vh;
-  }
-  body footer {
-    font-size: 14px;
-  }
-}
-
-/* For larger tablets and small desktops (between 1024px and 1200px) */
-@media (max-width: 1200px) and (min-width: 1024px) {
-  #title {
-    font-size: 11vh;
-  }
-  .choices {
-    top: 9vh;
-  }
-  body footer {
-    font-size: 15px;
-  }
-}
 
 .stars {
-  position: fixed;
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   transform: rotate(-45deg);
+  z-index: 99;
 }
 
 .star {
@@ -316,64 +225,3 @@ body footer a:hover {
     opacity: 0.6;
   }
 }
-
-/*# sourceMappingURL=bg.css.map */
-.button-64 {
-  align-items: center;
-  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
-  border: 0;
-  border-radius: 8px;
-  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  display: flex;
-  font-family: Phantomsans, sans-serif;
-  font-size: 19px;
-  justify-content: center;
-  line-height: 18px;
-  max-width: 50%;
-  min-width: 100px;
-  padding: 3px;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  cursor: pointer;
-  position: relative;
- 
-}
-
-.button-64:active,
-.button-64:hover {
-  outline: 0;
-}
-
-.button-64 span {
-  background-color: rgb(5, 6, 45);
-  padding: 16px 24px;
-  border-radius: 6px;
-  width: 100%;
-  height: 100%;
-  transition: 300ms;
-}
-
-.button-64:hover span {
- opacity: 90%;
-}
-
-@media (min-width: 768px) {
-  .button-64 {
-    font-size: 19px;
-    min-width: 186px;
-  }
-}
-@media (max-width: 400px) {
-    .button-64 {
-      font-size: 17px;
-      min-width: 200px;
-      max-width: 70%;
-      padding: 5px 5px;
-    }
-  }
-  
