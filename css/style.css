@@ -33,7 +33,7 @@ body {
 h1 {
   position: relative;
   bottom: 2vh;
-  font-size: 6vh;
+  font-size: 3rem;
   font-weight: 700;
   letter-spacing: 2px;
   background: linear-gradient(45deg, #1e90ff, #00ced1);
@@ -61,7 +61,7 @@ p {
   display: flex;
   gap: 30px;
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 .player1, .player2 {
   display: flex;
@@ -103,4 +103,26 @@ input {
 @keyframes blinker {
   0%, 100% { background-color: #0d1d31; }
   50% { background-color: #1E90FF; }
+}
+
+
+
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 4vh;
+  }
+  .container {
+    gap: 10px;
+    padding: 10px;
+  }
+  .scoring {
+    font-size: 1.5rem;
+    gap: 25px;
+  }
+  input {
+    font-size: 1.5rem;
+    width: 18px;
+  }
 }
