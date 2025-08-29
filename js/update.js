@@ -16,6 +16,7 @@ class FlicFlacFlow {
       playerChar2: document.getElementById("player2-char"),
       player1Label: document.getElementById("player1-label"),
       player2Label: document.getElementById("player2-label"),
+      reset: document.querySelector(".reset"),
     }
 
     this.winnerCombo = [
@@ -46,6 +47,7 @@ class FlicFlacFlow {
     this.updatePlayer()
     this.createStar()
     this.createBoard()
+    this.gameReset()
     if (this.getDataLocalStorage("Player2") === "Computer") {
       this.ComputerMoves()
     }
@@ -63,11 +65,21 @@ class FlicFlacFlow {
     const data = localStorage.getItem(key);
     return data ? JSON.parse(data) : null;
   }
+  // clear localstorage
+  resetDataLocalStorage() {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      this.setDataLocalStorage(key, "")
+    }
+    location.reload()
+  }
 
   loadFromLocalStorage() {
     // player label localstorage
     const savePlayer1Label = this.getDataLocalStorage("Player1");
     const savePlayer2Label = this.getDataLocalStorage("Player2");
+    this.setDataLocalStorage('Player1', 'Player');
+    this.setDataLocalStorage('Player2', 'Computer');
     
     // change label base on local storage
     if (savePlayer1Label) {
@@ -125,6 +137,7 @@ class FlicFlacFlow {
 
   }
 
+  // stars  
   createStar() {
     for (let i = 0; i < 20; i++) {
       const star = document.createElement('div');
@@ -183,7 +196,8 @@ class FlicFlacFlow {
       cell.classList.remove('highlight');
       cell.classList.remove('dimmed');
     });
-      
+    
+    this.DOM.reset.style.display = "block"
     this.moveX = [];
     this.moveY = [];
     this.currentPlayer = this.player[0];
@@ -224,31 +238,39 @@ class FlicFlacFlow {
     this.setDataLocalStorage("GameScore", this.gameScore)
   }
   
+  // reset Game
+  gameReset() {
+    this.DOM.reset.addEventListener('click', () => {
+      this.resetDataLocalStorage()
+    })
+  }
+
   // game start click
   ClickHandle(e) {
     this.setDataLocalStorage("PlayerChar", this.playerVal) // render player character
     const index = Number(e.target.dataset.index);
- 
+    
     [this.DOM.playerChar1, this.DOM.playerChar2].forEach(ch => {
       ch.readOnly = true
       ch.style.opacity = "0.6"
     })
-
+    
     // game started label
     if (!this.gameover) {
       this.gameStarted = true;
-
+      
       [this.DOM.player1Label, this.DOM.player2Label].forEach(el => {
         el.style.pointerEvents = "none"
         el.style.opacity = "0.6"
       })
     } else {
-        [this.DOM.player1Label, this.DOM.player2Label].forEach(el => {
+      [this.DOM.player1Label, this.DOM.player2Label].forEach(el => {
         el.style.pointerEvents = "auto"
         el.style.opacity = "1"
       })
     }
-  
+    
+    this.DOM.reset.style.display = "none"
     // if game end and click again it will restart
     if (this.gameover) {
       this.gameRestart();

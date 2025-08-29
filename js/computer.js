@@ -32,3 +32,12 @@ export class Computer {
 
 // 8-17-25 
 // AI MOVES AUTO
+
+
+// 8-29-25
+// done reset game local storage
+
+// TODO
+// next is the clean code split classes different files
+// Image as a character use 
+// fully responsive 
