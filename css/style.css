@@ -14,6 +14,7 @@ html, body {
 }
 body {
   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+  height: 100vh;
   overflow: hidden;
   background-repeat: no-repeat;
   background-attachment: center;
@@ -67,6 +68,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+    
 }
 .tie {
   display: flex;
@@ -76,6 +78,7 @@ text-align: center;
 .head {
   display: flex;
   gap: 10px;
+  
 }
 input {
   background: none;
@@ -100,6 +103,31 @@ input {
     pointer-events: none;
     opacity: 0.6;
 }
+.cell {
+    border: 1px solid white;
+    color: white;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 3rem;
+    font-family: Roboto, Arial, sans-serif;
+}
+.board {
+    border: 1px solid white;
+    height: min(90vw, 50vh);
+    width: min(90vw, 50vh);
+    border-collapse: collapse;
+}
+
+
+@media(max-width: 728px) {
+  body {
+
+  }
+
+}
+
 @keyframes blinker {
   0%, 100% { background-color: #0d1d31; }
   50% { background-color: #1E90FF; }

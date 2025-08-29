@@ -136,23 +136,13 @@ class FlicFlacFlow {
   // board of the game
   createBoard() {
     const board = document.createElement("table");
-    board.style.border = "1px solid white";
-    board.style.height = "50vh";
-    board.style.width = "50vh";
-    board.style.borderCollapse = "collapse"
+    board.classList.add("board");
     
     for(let i = 0; i < this.sizeBoard; i++) {
       const row = document.createElement("tr");   
       for (let j = 0; j < this.sizeBoard; j++) {
         const cell = document.createElement("td");
-        cell.style.border = "1px solid white";
-        cell.style.color = "white";
-        cell.style.width = "60px";
-        cell.style.height = "60px";
-        cell.style.textAlign = "center";
-        cell.style.verticalAlign = "middle";
-        cell.style.fontSize = "3rem";
-        cell.style.fontFamily = "Roboto, Arial";
+        cell.classList.add("cell");
         cell.dataset.row = i;
         cell.dataset.col = j;   
         cell.dataset.index = this.count;
