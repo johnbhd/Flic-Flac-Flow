@@ -1,7 +1,7 @@
 export class Computer {
     constructor() {}
 
-    getMove(playerMoves, computerMoves) {
+    getMove(playerMoves: number[], computerMoves: number[]) {
         const allMoves = [...playerMoves, ...computerMoves]
         const allCells = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         const available = allCells.filter(cel => !allMoves.includes(cel))

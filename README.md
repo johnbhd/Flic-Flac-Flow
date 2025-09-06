@@ -27,21 +27,24 @@ A fun, strategic, and customizable **Tic Tac Toe-inspired game** with twists lik
 ## Roadmap 
 
 ### 1st Session - environment setup (Migration)
-- typescript 
-- scss
+- typescript vite
 - migration
 
 ### 2nd Session - img upload
 - cloudinary 
 - localstorage upload img string cloudinary 
 
+
+### To Fix 
+- player input should not same to other player input
+- localstorage not working score
+- reset game 
 --- 
 
 ## Tech Stack
 - Typescript
 - Vite
 - Firebase 
-- Scss
 
 ## Setup  
 ```bash
