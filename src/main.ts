@@ -1,4 +1,4 @@
-import { Computer } from "./computer.js";
+import { Computer } from "./js/Computer.js";
 
 class FlicFlacFlow {
   constructor() {
