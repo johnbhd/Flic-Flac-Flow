@@ -26,11 +26,12 @@ A fun, strategic, and customizable **Tic Tac Toe-inspired game** with twists lik
 ---
 ## Roadmap 
 
-### 1st Session - environment setup (Migration)
+### 1st Session - environment setup (Migration) DONE
 - typescript vite
 - migration
 
-### 2nd Session - img upload
+### 2nd Session - Computer competitive And img upload
+- computer algo 
 - cloudinary 
 - localstorage upload img string cloudinary 
 

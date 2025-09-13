@@ -336,3 +336,27 @@ class FlicFlacFlow {
 }
 
 new FlicFlacFlow();
+// task - make old code as OOP practice clean code architecture
+// score localstorage
+// localstorage player icon
+// local storage player or computer
+// computer moves
+// Done
+// change character 
+// GOAL 8-9-25
+// use oop approach 
+// make name clickable for the player or computer
+
+
+
+// 8-17-25 
+// AI MOVES AUTO
+
+
+// 8-29-25
+// done reset game local storage
+
+// TODO
+// next is the clean code split classes different files
+// Image as a character use 
+// fully responsive 

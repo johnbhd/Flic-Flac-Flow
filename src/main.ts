@@ -15,8 +15,8 @@ class FlicFlacFlow {
   playerLabel: string[];
   currentPlayer: string;
   gameover: boolean;
-  gameScore: any;
-  gameTitle: string
+  gameTitle: string;
+  scores: {player1: number; player2: number; tie: number}
 
   constructor() {
     this.ui = new UI();
@@ -27,7 +27,8 @@ class FlicFlacFlow {
     this.playerLabel = ["Player", "Computer"]
     this.currentPlayer = this.player[0];
     this.gameover = false;
-    this.gameScore = { player1: 0, player2: 0, tie: 0 };
+
+    this.scores = Storage.get("scores") || { player1: 0, player2: 0, tie: 0 };
     this.gameTitle = "Flic Flac Flow"
     this.ui.showMessage(this.gameTitle);
     
@@ -35,6 +36,7 @@ class FlicFlacFlow {
     this.board = new Board(this.ui.DOM, this.game.sizeBoard);
     this.ui.createStar();
     this.setupCellListener();
+    this.resetScore();
 
     // switch players 
     this.ui.setUpLabelPlayers()
@@ -44,6 +46,21 @@ class FlicFlacFlow {
       this.playerVal = chars;
       this.player = [...chars];
       this.currentPlayer = chars[0];
+    })
+
+    this.ui.updateScore(this.scores.player1, this.scores.player2, this.scores.tie);
+  }
+
+  // reset Scores games
+  resetScore() {
+    this.ui.DOM.reset.addEventListener('click', () => {
+      Storage.reset();
+      this.scores = { player1: 0, player2: 0, tie: 0};
+      this.ui.updateScore(0, 0, 0);
+
+      // reset char
+      this.ui.DOM.playerChar1.value = 'X'
+      this.ui.DOM.playerChar2.value = 'O'
     })
   }
 
@@ -64,10 +81,7 @@ class FlicFlacFlow {
       this.gameover = false;
 
       // enable input
-      [this.ui.DOM.playerChar1, this.ui.DOM.playerChar2].forEach(ch => {
-        ch.readOnly = false;
-        ch.style.opacity = "1";
-      });
+      this.ui.onGamePlay(false)
 
 
      if (Storage.get("Player2") === "Computer" && this.currentPlayer === this.player[1]) {
@@ -88,6 +102,8 @@ class FlicFlacFlow {
     const target = e.target as HTMLTableCellElement;// render player character
     const index = Number(target.dataset.index); // cell index
     this.ui.DOM.reset.style.display = "none" 
+
+    this.ui.onGamePlay(true) // opacity label
     
     if (!target || target.textContent || this.gameover) return;
 
@@ -104,6 +120,23 @@ class FlicFlacFlow {
     if (winner) {
       this.board.highlightWinner(winner);
       this.ui.showMessage(`The winner is ${this.currentPlayer} Player!`);
+
+      // update scores
+      if (this.currentPlayer === this.player[0]) this.scores.player1++;
+      else this.scores.player2++;
+      Storage.set("scores", this.scores);
+      this.ui.updateScore(this.scores.player1, this.scores.player2, this.scores.tie);
+
+      this.gameover = true;
+      setTimeout(() => this.gameRestart(), 1500);
+      return;
+    }
+
+    if (this.game.checkTie()) {
+      this.ui.showMessage(`Game Tie!`);
+      this.scores.tie++;
+      Storage.set("scores", this.scores);
+      this.ui.updateScore(this.scores.player1, this.scores.player2, this.scores.tie);
       this.gameover = true;
       setTimeout(() => this.gameRestart(), 1500);
       return;
@@ -121,7 +154,7 @@ class FlicFlacFlow {
   }
 
   ComputerMove() {
-    const compMove = this.computer.getMove(this.game.moveX, this.game.moveY)
+    const compMove = this.computer.getMove(this.game.moveX, this.game.moveY, this.game.winnerCombo)
     if (!compMove) return;
 
     const cell = document.querySelector(`[data-index='${compMove}']`);
@@ -136,10 +169,11 @@ class FlicFlacFlow {
     if (winner) {
         this.board.highlightWinner(winner);
         this.ui.showMessage(`The winner is Computer!`);
-        if (this.currentPlayer === this.player[0]) this.gameScore.player1++
-        else this.gameScore.player2++
-        Storage.set("Game", this.gameScore);
-        this.ui.updateScore(this.gameScore.player1, this.gameScore.player2, this.gameScore.tie)
+
+        // save scores computer
+        this.scores.player2++
+        Storage.set("scores", this.scores);
+        this.ui.updateScore(this.scores.player1, this.scores.player2, this.scores.tie)
         this.gameover = true;
         setTimeout(() => this.gameRestart(), 1500);
         return;
@@ -148,9 +182,9 @@ class FlicFlacFlow {
     // Check for tie after computer move
     if (this.game.checkTie()) {
         this.ui.showMessage(`Game Tie!`);
-        this.gameScore.tie++;
-        Storage.set("GameScore", this.gameScore);
-        this.ui.updateScore(this.gameScore.player1, this.gameScore.player2, this.gameScore.tie)
+        this.scores.tie++;
+        Storage.set("scores", this.scores);
+        this.ui.updateScore(this.scores.player1, this.scores.player2, this.scores.tie)
         this.gameover = true;
         setTimeout(() => this.gameRestart(), 1500);
         return;

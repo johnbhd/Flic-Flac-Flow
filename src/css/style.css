@@ -88,6 +88,7 @@ h1 {
     vertical-align: middle;
     font-size: 3rem;
     font-family: "Roboto", Arial, sans-serif;
+    cursor: pointer;
 }
 td.highlight {
   animation: blinker 2s ease-in-out infinite;
