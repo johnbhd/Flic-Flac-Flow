@@ -1,4 +1,4 @@
-import { Computer } from "./computer.js";
+import { Computer } from "./js/Computer.js";
 
 class FlicFlacFlow {
   constructor() {
@@ -138,13 +138,7 @@ class FlicFlacFlow {
   }
 
   // stars  
-  createStar() {
-    for (let i = 0; i < 20; i++) {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      this.DOM.stars.appendChild(star);
-    }
-  }
+
 
   // board of the game
   createBoard() {
@@ -342,3 +336,27 @@ class FlicFlacFlow {
 }
 
 new FlicFlacFlow();
+// task - make old code as OOP practice clean code architecture
+// score localstorage
+// localstorage player icon
+// local storage player or computer
+// computer moves
+// Done
+// change character 
+// GOAL 8-9-25
+// use oop approach 
+// make name clickable for the player or computer
+
+
+
+// 8-17-25 
+// AI MOVES AUTO
+
+
+// 8-29-25
+// done reset game local storage
+
+// TODO
+// next is the clean code split classes different files
+// Image as a character use 
+// fully responsive 
