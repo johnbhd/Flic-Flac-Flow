@@ -32,7 +32,9 @@ export class Computer {
         if (corner.length) return corner[Math.floor(Math.random() * corner.length)];
 
         // random moves
-        return available[Math.floor(Math.random() * available.length)]
+        if (Math.random() < 0.7) { // means only 70% of completely random moves by computer
+            return available[Math.floor(Math.random() * available.length)]
+        }
     }
 
     private findingWinningMove(combo: number[], moves: number[], available: number[]) {
