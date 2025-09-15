@@ -1,7 +1,4 @@
-
-
 export class Computer {
-    constructor() {}
 
     getMove(playerMoves: number[], computerMoves: number[], winnerCombo: number[][]) {
         const allMoves = [...playerMoves, ...computerMoves]
@@ -12,24 +9,19 @@ export class Computer {
 
         if (available.length === 0) return null; // tie return nothing
 
-        // computer strategy
+        // computer strategy with counter player moves
         for (const combo of winnerCombo) {
-            const move = this.findingWinningMove(combo, computerMoves, available);
-            if (move) return move
-        }
-
-        // counter player moves
-        for (const combo of winnerCombo) {
-            const move = this.findingWinningMove(combo, playerMoves, available);
+            const move = this.findingWinningMove(combo, computerMoves, available) 
+                      || this.findingWinningMove(combo, playerMoves, available);
             if (move) return move;
         }
 
         // computer take center 
         if(available.includes(5)) return 5;
 
-        // take corner 
-        const corner = [1, 3, 7, 9].filter(c => available.includes(c));
-        if (corner.length) return corner[Math.floor(Math.random() * corner.length)];
+        // // take corner 
+        // const corner = [1, 3, 7, 9].filter(c => available.includes(c));
+        // if (corner.length) return corner[Math.floor(Math.random() * corner.length)];
 
         // random moves
         if (Math.random() < 0.7) { // means only 70% of completely random moves by computer
@@ -38,15 +30,13 @@ export class Computer {
     }
 
     private findingWinningMove(combo: number[], moves: number[], available: number[]) {
-        const hits = combo.filter(c => moves.includes(c)); // cell already occupied
-        const remaining = combo.filter(c => !moves.includes(c)); // cell that player has'nt taken
-        if (hits.length === 2 && remaining.length == 1 && available.includes(remaining[0])) {
+        const remaining = combo.filter(c => !moves.includes(c));// cell that player has'nt taken
+        return (combo.length - remaining.length === 2 && remaining.length === 1 && available.includes(remaining[0]))
+            ? remaining[0]
+            : null;
             // if cell occupied 2 then target it
             // if cell occupied 1 then complete until win
             // if missing cell is not taken
-            return remaining[0] // return the first value in remaining var
-        }
-        return null
     }
 }
 // things to do
