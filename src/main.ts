@@ -3,6 +3,7 @@ import { UI } from "./js/UI.js";
 import { Board } from "./js/Board.js";
 import  { Game } from "./js/Game.js";
 import { Storage } from "./js/Storage.js";
+import './js/UploadImg.js'
 
 class FlicFlacFlow {
   ui: UI;

@@ -29,7 +29,7 @@
            <div class="head">
            <label class="img-icon">
               <i class="fa-solid fa-image"></i>
-              <input type="file" accept="image/*" hidden>
+              <input type="file" id="file_upload_p1" accept="image/*" hidden>
            </label>
              <p id="player1-label" class="player-label">Player</p>
              <input type="text" value="X" class="single-char" id="player1-char" maxlength="1">
@@ -47,15 +47,18 @@
             <input type="text" value="O" class="single-char" id="player2-char" maxlength="1">
             <label class="img-icon">
               <i class="fa-solid fa-image"></i>
-              <input type="file" accept="image/*" hidden>
+              <input type="file" id="file_upload_p2" accept="image/*" hidden>
             </label>
             </div>
             <div id="player2-score">0</div>
           </div>
       </div>
+      <div id="preview_p1"></div>
+      <div id="preview_p2"></div>
     </div>
 
   </div>
 </body>
- <script type="module" src="/src/main.ts"></script>
+<script type="module" src="/src/main.ts"></script>
+
 </html>
